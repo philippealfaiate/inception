@@ -1,0 +1,28 @@
+
+version: "3.8"
+services:
+# NGINX CONTAINER
+  nginx:
+    container_name: nginx
+    build: dockerfiles/nginx
+    restart: always
+    image: nginx
+    env_file:
+      - .env
+    # depends_on:
+    #   - mariadb
+    ports:
+      - 443:443
+    networks:
+      - inception
+    volumes:
+      - nginx_conf:/etc/nginx
+      # - www:/var/www/html
+
+networks:
+  inception:
+    name: inception
+    driver: bridge
+
+volumes:
+  nginx_conf:
