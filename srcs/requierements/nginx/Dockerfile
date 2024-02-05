@@ -1,8 +1,14 @@
+# Définir une variable ARG pour la version de Debian
+ARG DEBIAN_VERSION=bookworm-slim
 
-FROM alpine:3.18.4
+FROM debian:${DEBIAN_VERSION}
 
-RUN apk update
-RUN apk upgrade
+RUN apt-get update && apt-get install -y nginx openssl
+
+# Suppression des fichiers apres l'installation des paquets
+RUN rm -rf /var/libapt/lists/*
+
+WORKDIR /var/www
 
 # NGINX SERVER
 RUN apk add --no-cache nginx
