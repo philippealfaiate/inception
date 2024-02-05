@@ -21,7 +21,7 @@ RUN mkdir -p /etc/nginx/ssl
 
 
 # Define Ports
-EXPOSE	443
+EXPOSE 443
 
 # Set Command && args
 CMD ["nginx", "-g", "daemon off;"]
